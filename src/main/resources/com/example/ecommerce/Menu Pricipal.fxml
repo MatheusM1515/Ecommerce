@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="979.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="460.0" fitWidth="646.0" layoutX="-53.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../images/pngtree-3d-illustration-of-an-unbranded-black-sports-car-outdoors-image_3778090.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="320.0" layoutY="24.0" text="Menu Principal" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Button layoutX="617.0" layoutY="129.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="117.0" text="Cadastrar Produto">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="617.0" layoutY="307.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="117.0" text="Sair">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="617.0" layoutY="193.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="117.0" text="Vendas">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="617.0" layoutY="252.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="117.0" text="Relatórios">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="617.0" layoutY="67.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="117.0" text="Cadastrar Cliente">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fitHeight="35.0" fitWidth="66.0" layoutX="915.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Pictures/user-icon-on-transparent-background-free-png.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>
