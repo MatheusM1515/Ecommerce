@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="854.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ecommerce.controller.MainController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" onAction="#abrirHome" text="Home" />
+          <Menu mnemonicParsing="false" text="Cadastros">
+            <items>
+                  <MenuItem fx:id="abrirProdutos" mnemonicParsing="false" onAction="#abrirProdutos" text="Produtos" />
+              <MenuItem fx:id="abrirClientes" mnemonicParsing="false" onAction="#abrirClientes" text="Clientes" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Nova venda">
+               <items>
+                  <MenuItem fx:id="abrirAdicionarVenda" mnemonicParsing="false" onAction="#abrirAdicionarVenda" text="adicionar venda" />
+               </items></Menu>
+            <Menu mnemonicParsing="false" text="Relatório">
+              <items>
+                <MenuItem fx:id="abrirRelatorio" mnemonicParsing="false" onAction="#abrirRelatorio" text="Relatório de Vendas" />
+              </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Ajuda">
+            <items>
+              <MenuItem fx:id="abrirAjuda" mnemonicParsing="false" onAction="#abrirAjuda" text="Sobre" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <Label text="Tela inicial" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

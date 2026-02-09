@@ -17,7 +17,7 @@
    <children>
       <ImageView fitHeight="480.0" fitWidth="803.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../images/pngtree-intricate-design-on-the-front-of-a-contemporary-vehicle-against-a-image_3749413.jpg" />
+            <Image url="@../images/pngtree-intricate-design-on-the-front-of-a-contemporary-vehicle-against-a-image_3749413.jpg" />
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="349.0" layoutX="26.0" layoutY="58.0" stroke="WHITE" strokeType="INSIDE" width="283.0" />

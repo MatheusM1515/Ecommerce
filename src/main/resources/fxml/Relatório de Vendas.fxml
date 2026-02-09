@@ -43,7 +43,7 @@
       </TableView>
       <ImageView fitHeight="315.0" fitWidth="559.0" layoutX="-1.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../images/pngtree-3d-illustration-of-an-unbranded-black-sports-car-outdoors-image_3778090.jpg" />
+            <Image url="@../images/3.jpg" />
          </image>
       </ImageView>
       <DatePicker layoutX="676.0" layoutY="90.0">
