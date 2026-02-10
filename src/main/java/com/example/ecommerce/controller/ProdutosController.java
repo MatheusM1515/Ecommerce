@@ -1,5 +1,7 @@
 package com.example.ecommerce.controller;
 
+import com.example.ecommerce.dao.ProdutoDAO;
+import com.example.ecommerce.model.Produto;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -7,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 
 public class ProdutosController {
 
@@ -17,6 +20,8 @@ public class ProdutosController {
     @FXML
     private TextField textPreco;
 
+    @FXML
+    private TextField textQuantidade;
 
     @FXML
     private TableView<Produto> tabelaProdutos;
@@ -30,6 +35,9 @@ public class ProdutosController {
     @FXML
     private TableColumn<Produto, Double> colPreco;
 
+    @FXML
+    private TableColumn<Produto, Integer> colQuantidade;
+
 
     private final ProdutoDAO dao = new ProdutoDAO();
     private Produto produtoSelecionado;
@@ -40,6 +48,7 @@ public class ProdutosController {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
+        colQuantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
 
         atualizarTabela();
     }
@@ -61,13 +70,15 @@ public class ProdutosController {
     public void salvarProduto() {
         try {
             double preco = Double.parseDouble(textPreco.getText());
+            int quantidade = Integer.parseInt(textQuantidade.getText());
 
             if (produtoSelecionado == null) {
-                Produto novo = new Produto(textNome.getText(), preco);
+                Produto novo = new Produto(textNome.getText(), preco, quantidade);
                 dao.salvar(novo);
             } else {
                 produtoSelecionado.setNome(textNome.getText());
                 produtoSelecionado.setPreco(preco);
+                produtoSelecionado.setQuantidade(quantidade);
                 dao.atualizar(produtoSelecionado);
             }
 
@@ -119,6 +130,10 @@ public class ProdutosController {
         tabelaProdutos.getSelectionModel().clearSelection();
     }
 
+    @FXML
+    private void voltarProduto() {
+        System.out.println("Botão voltar clicado");
+    }
 
     private void exibirAlerta(String titulo, String mensagem) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -126,4 +141,6 @@ public class ProdutosController {
         alert.setContentText(mensagem);
         alert.show();
     }
+
+
 }
