@@ -6,14 +6,11 @@ import com.example.ecommerce.dao.VendaDAO;
 import com.example.ecommerce.dao.ItemVendaDAO;
 import com.example.ecommerce.model.*;
 
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.util.List;
-
-public class NovaVendaController {
+public class VendasController {
 
     @FXML
     private ComboBox<Cliente> comboCliente;
@@ -44,13 +41,10 @@ public class NovaVendaController {
     private final VendaDAO vendaDAO = new VendaDAO();
     private final ItemVendaDAO itemVendaDAO = new ItemVendaDAO();
 
-    private Venda vendaAtual;
-
+    private Venda vendaAtual = new Venda();
 
     @FXML
     public void initialize() {
-
-        vendaAtual = new Venda();
 
         spinnerQuantidade.setValueFactory(
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1)
@@ -69,12 +63,9 @@ public class NovaVendaController {
         carregarProdutos();
     }
 
-
     private void carregarClientes() {
         try {
-            comboCliente.setItems(
-                    FXCollections.observableArrayList(clienteDAO.listarTodos())
-            );
+            comboCliente.getItems().setAll(clienteDAO.listarTodos());
         } catch (Exception e) {
             exibirAlerta("Erro", "Erro ao carregar clientes");
         }
@@ -82,20 +73,17 @@ public class NovaVendaController {
 
     private void carregarProdutos() {
         try {
-            comboProduto.setItems(
-                    FXCollections.observableArrayList(produtoDAO.listarTodos())
-            );
+            comboProduto.getItems().setAll(produtoDAO.listarTodos());
         } catch (Exception e) {
             exibirAlerta("Erro", "Erro ao carregar produtos");
         }
     }
 
-
     @FXML
     public void adicionarItem() {
 
         Produto produto = comboProduto.getValue();
-        Integer quantidade = spinnerQuantidade.getValue();
+        int quantidade = spinnerQuantidade.getValue();
 
         if (produto == null) {
             exibirAlerta("Erro", "Selecione um produto");
@@ -108,9 +96,8 @@ public class NovaVendaController {
 
         tabelaItens.getItems().add(item);
 
-        atualizarTotal();
+        labelTotal.setText("Total: R$ " + vendaAtual.getValorTotal());
     }
-
 
     @FXML
     public void finalizarVenda() {
@@ -131,51 +118,28 @@ public class NovaVendaController {
 
             vendaAtual.setCliente(cliente);
 
+            vendaDAO.salvar(vendaAtual); // precisa retornar ID
 
-            vendaDAO.salvar(vendaAtual);
+            itemVendaDAO.salvarItens(vendaAtual.getId(), vendaAtual.getCliente());
 
-
-            itemVendaDAO.salvarItensDaVenda(
-                    vendaAtual.getId(),
-                    (List<ItemVenda>) vendaAtual.getItens()
-            );
-
-            exibirSucesso("Venda realizada com sucesso!");
-
-            limparTela();
+            limparVenda();
 
         } catch (Exception e) {
-            e.printStackTrace();
             exibirAlerta("Erro", e.getMessage());
         }
     }
 
-
-    private void atualizarTotal() {
-        labelTotal.setText(
-                String.format("Total: R$ %.2f", vendaAtual.getValorTotal())
-        );
-    }
-
-    private void limparTela() {
+    private void limparVenda() {
         vendaAtual = new Venda();
         tabelaItens.getItems().clear();
         comboCliente.setValue(null);
         comboProduto.setValue(null);
-        spinnerQuantidade.getValueFactory().setValue(1);
-        atualizarTotal();
+        labelTotal.setText("Total: R$ 0.00");
     }
 
     private void exibirAlerta(String titulo, String mensagem) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(titulo);
-        alert.setContentText(mensagem);
-        alert.show();
-    }
-
-    private void exibirSucesso(String mensagem) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Sucesso");
         alert.setContentText(mensagem);
         alert.show();
     }
