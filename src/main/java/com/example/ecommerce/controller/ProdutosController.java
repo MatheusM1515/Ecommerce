@@ -1,13 +1,11 @@
 package com.example.ecommerce.controller;
 
 import com.example.ecommerce.dao.ProdutoDAO;
-import com.example.ecommerce.model.Categoria;
 import com.example.ecommerce.model.Produto;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
 
 public class ProdutosController {
 
@@ -36,8 +34,6 @@ public class ProdutosController {
     @FXML
     private TableColumn<Produto, Integer> colQuantidade;
 
-    @FXML
-    private ComboBox<Categoria> comboCategoria;
 
 
     private final ProdutoDAO dao = new ProdutoDAO();
@@ -50,13 +46,6 @@ public class ProdutosController {
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
         colQuantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
-
-        comboCategoria.getItems().addAll(
-                new Categoria(1, "Sapato"),
-                new Categoria(2, "Camisa"),
-                new Categoria(3, "Calça"),
-                new Categoria(4, "Chinelo")
-        );
 
         atualizarTabela();
 
